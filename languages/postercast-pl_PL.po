@@ -1,0 +1,350 @@
+# Polish translation for Poster Gallery
+# Copyright (C) 2024 Michal Konecny
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Poster Gallery 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Polish\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+
+#: includes/class-post-type-poster.php
+msgid "Posters"
+msgstr "Plakaty"
+
+#: includes/class-post-type-poster.php
+msgid "Poster"
+msgstr "Plakat"
+
+#: includes/class-post-type-poster.php
+msgid "Poster Gallery"
+msgstr "Galeria plakatów"
+
+#: includes/class-post-type-poster.php
+msgid "Add Poster"
+msgstr "Dodaj plakat"
+
+#: includes/class-post-type-poster.php
+msgid "Add New Poster"
+msgstr "Dodaj nowy plakat"
+
+#: includes/class-post-type-poster.php
+msgid "Edit Poster"
+msgstr "Edytuj plakat"
+
+#: includes/class-post-type-poster.php
+msgid "New Poster"
+msgstr "Nowy plakat"
+
+#: includes/class-post-type-poster.php
+msgid "View Poster"
+msgstr "Zobacz plakat"
+
+#: includes/class-post-type-poster.php
+msgid "Search Posters"
+msgstr "Szukaj plakatów"
+
+#: includes/class-post-type-poster.php
+msgid "No posters found"
+msgstr "Nie znaleziono plakatów"
+
+#: includes/class-post-type-poster.php
+msgid "No posters found in Trash"
+msgstr "Nie znaleziono plakatów w koszu"
+
+#: includes/class-post-type-poster.php
+msgid "All Posters"
+msgstr "Wszystkie plakaty"
+
+#: includes/class-post-type-poster.php
+msgid "Poster Image"
+msgstr "Obraz plakatu"
+
+#: includes/class-post-type-poster.php
+msgid "Set poster image"
+msgstr "Ustaw obraz plakatu"
+
+#: includes/class-post-type-poster.php
+msgid "Remove poster image"
+msgstr "Usuń obraz plakatu"
+
+#: includes/class-post-type-poster.php
+msgid "Use as poster image"
+msgstr "Użyj jako obraz plakatu"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Galleries"
+msgstr "Galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Gallery"
+msgstr "Galeria"
+
+#: includes/class-taxonomy-gallery.php
+msgid "All Galleries"
+msgstr "Wszystkie galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Edit Gallery"
+msgstr "Edytuj galerię"
+
+#: includes/class-taxonomy-gallery.php
+msgid "View Gallery"
+msgstr "Zobacz galerię"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Update Gallery"
+msgstr "Aktualizuj galerię"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Add New Gallery"
+msgstr "Dodaj nową galerię"
+
+#: includes/class-taxonomy-gallery.php
+msgid "New Gallery Name"
+msgstr "Nazwa nowej galerii"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Search Galleries"
+msgstr "Szukaj galerii"
+
+#: includes/class-taxonomy-gallery.php
+msgid "No galleries found"
+msgstr "Nie znaleziono galerii"
+
+#: includes/class-meta-fields.php
+msgid "Poster Details"
+msgstr "Szczegóły plakatu"
+
+#: includes/class-meta-fields.php
+msgid "Description"
+msgstr "Opis"
+
+#: includes/class-meta-fields.php
+msgid "Admin-only note. Not displayed on the frontend."
+msgstr "Notatka tylko dla administratorów. Nie jest wyświetlana na stronie."
+
+#: includes/class-meta-fields.php
+msgid "URL"
+msgstr "URL"
+
+#: includes/class-meta-fields.php
+msgid "Orientation Mode"
+msgstr "Tryb orientacji"
+
+#: includes/class-meta-fields.php
+msgid "Auto"
+msgstr "Automatycznie"
+
+#: includes/class-meta-fields.php
+msgid "Portrait"
+msgstr "Pionowo"
+
+#: includes/class-meta-fields.php
+msgid "Landscape"
+msgstr "Poziomo"
+
+#: includes/class-meta-fields.php
+msgid "Detected: %s"
+msgstr "Wykryto: %s"
+
+#: includes/class-meta-fields.php
+msgid "Show From"
+msgstr "Wyświetl od"
+
+#: includes/class-meta-fields.php
+msgid "Show Until"
+msgstr "Wyświetl do"
+
+#: includes/class-admin-columns.php
+msgid "Thumbnail"
+msgstr "Miniatura"
+
+#: includes/class-admin-columns.php
+msgid "Orientation"
+msgstr "Orientacja"
+
+#: includes/class-admin-columns.php
+msgid "Date Range"
+msgstr "Zakres dat"
+
+#: includes/class-admin-columns.php
+msgid "Order"
+msgstr "Kolejność"
+
+#: includes/class-admin-columns.php
+msgid "No image"
+msgstr "Bez obrazu"
+
+#: includes/class-admin-columns.php
+msgid "auto"
+msgstr "auto"
+
+#: includes/class-admin-columns.php
+msgid "From %s"
+msgstr "Od %s"
+
+#: includes/class-admin-columns.php
+msgid "Until %s"
+msgstr "Do %s"
+
+#: includes/class-admin-columns.php
+msgid "Always"
+msgstr "Zawsze"
+
+#: includes/class-admin-columns.php
+msgid "Expired"
+msgstr "Wygasło"
+
+#: includes/class-admin-columns.php
+msgid "Scheduled"
+msgstr "Zaplanowane"
+
+#: includes/class-admin-order.php
+msgid "Reorder Posters"
+msgstr "Zmień kolejność plakatów"
+
+#: includes/class-admin-order.php
+msgid "Reorder"
+msgstr "Zmień kolejność"
+
+#: includes/class-admin-order.php
+msgid "Select Gallery:"
+msgstr "Wybierz galerię:"
+
+#: includes/class-admin-order.php
+msgid "&mdash; Select a gallery &mdash;"
+msgstr "&mdash; Wybierz galerię &mdash;"
+
+#: includes/class-admin-order.php
+msgid "Select a gallery to load posters."
+msgstr "Wybierz galerię, aby załadować plakaty."
+
+#: includes/class-admin-order.php
+msgid "Permission denied."
+msgstr "Odmowa dostępu."
+
+#: includes/class-admin-order.php
+msgid "Invalid gallery."
+msgstr "Nieprawidłowa galeria."
+
+#: includes/class-admin-order.php
+msgid "No posters found in this gallery."
+msgstr "W tej galerii nie znaleziono plakatów."
+
+#: includes/class-admin-order.php
+msgid "Invalid data."
+msgstr "Nieprawidłowe dane."
+
+#: includes/class-rest-api.php
+msgid "Gallery not found."
+msgstr "Nie znaleziono galerii."
+
+#: includes/class-rest-api.php
+msgid "Order updated successfully."
+msgstr "Kolejność została pomyślnie zaktualizowana."
+
+#: templates/gallery-grid.php
+msgid "Show all (%d)"
+msgstr "Pokaż wszystkie (%d)"
+
+#: templates/lightbox.php
+msgid "Image lightbox"
+msgstr "Przeglądarka obrazów"
+
+#: templates/lightbox.php
+msgid "Close lightbox"
+msgstr "Zamknij przeglądarkę"
+
+#: templates/lightbox.php
+msgid "Previous image"
+msgstr "Poprzedni obraz"
+
+#: templates/lightbox.php
+msgid "Next image"
+msgstr "Następny obraz"
+
+#: templates/lightbox.php
+msgid "Visit link"
+msgstr "Odwiedź link"
+
+#: templates/poster-item.php
+msgid "Open %s in lightbox"
+msgstr "Otwórz %s w przeglądarce"
+
+#: blocks/gallery-block/edit.js
+msgid "Max Gallery Width"
+msgstr "Maksymalna szerokość galerii"
+
+#: blocks/gallery-block/edit.js
+msgid "Fit content"
+msgstr "Dopasuj do zawartości"
+
+#: blocks/gallery-block/edit.js
+msgid "Small (600px)"
+msgstr "Mała (600px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Medium (800px)"
+msgstr "Średnia (800px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Large (1000px)"
+msgstr "Duża (1000px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Extra Large (1200px)"
+msgstr "Bardzo duża (1200px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Full width (100%)"
+msgstr "Pełna szerokość (100%)"
+
+#: includes/class-meta-fields.php
+#: blocks/gallery-block/edit.js
+msgid "Horizontal Alignment"
+msgstr "Wyrównanie poziome"
+
+#: includes/class-meta-fields.php
+#: blocks/gallery-block/edit.js
+msgid "Vertical Alignment"
+msgstr "Wyrównanie pionowe"
+
+#: includes/class-meta-fields.php
+msgid "Stretch"
+msgstr "Rozciągnij"
+
+#: includes/class-meta-fields.php
+msgid "Center"
+msgstr "Środek"
+
+#: includes/class-meta-fields.php
+msgid "Left"
+msgstr "Lewo"
+
+#: includes/class-meta-fields.php
+msgid "Right"
+msgstr "Prawo"
+
+#: includes/class-meta-fields.php
+msgid "Top"
+msgstr "Góra"
+
+#: includes/class-meta-fields.php
+msgid "Bottom"
+msgstr "Dół"
+
+#: blocks/gallery-block/edit.js
+msgid "Gallery Alignment"
+msgstr "Wyrównanie galerii"
+
+#: blocks/gallery-block/edit.js
+msgid "Stretch (full width)"
+msgstr "Rozciągnij (pełna szerokość)"

@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PosterCast — WordPress Plugin</title>
+    <meta name="description" content="A powerful WordPress plugin for creating poster and flyer galleries with responsive grid layout, full-screen lightbox, date scheduling, and drag & drop ordering.">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --c-primary: #2271b1;
+            --c-primary-dark: #135e96;
+            --c-text: #1a1a2e;
+            --c-text-muted: #555;
+            --c-bg: #ffffff;
+            --c-bg-alt: #f7f8fb;
+            --c-bg-dark: #0f1117;
+            --c-border: #e4e6eb;
+            --c-accent: #e8f0fe;
+            --radius: 12px;
+            --shadow: 0 2px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.65;
+            color: var(--c-text);
+            background: var(--c-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── Nav ── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--c-border);
+        }
+        .nav .container {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 56px;
+        }
+        .nav-brand {
+            font-weight: 700; font-size: 16px; color: var(--c-text);
+            text-decoration: none; display: flex; align-items: center; gap: 8px;
+        }
+        .nav-brand svg { width: 22px; height: 22px; fill: var(--c-primary); }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a {
+            font-size: 14px; color: var(--c-text-muted); text-decoration: none;
+            font-weight: 500; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--c-primary); }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 140px 0 100px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-alt) 100%);
+        }
+        .hero-badge {
+            display: inline-block; padding: 6px 16px; border-radius: 20px;
+            background: var(--c-accent); color: var(--c-primary);
+            font-size: 13px; font-weight: 600; margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 56px); font-weight: 800;
+            line-height: 1.15; margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 span { color: var(--c-primary); }
+        .hero p {
+            font-size: 19px; color: var(--c-text-muted); margin-bottom: 36px;
+            max-width: 620px; margin-left: auto; margin-right: auto;
+        }
+        .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; font-size: 15px; font-weight: 600;
+            text-decoration: none; border-radius: 10px; border: none;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .btn-primary { background: var(--c-primary); color: #fff; }
+        .btn-primary:hover { background: var(--c-primary-dark); transform: translateY(-1px); box-shadow: var(--shadow); }
+        .btn-outline {
+            background: transparent; color: var(--c-text);
+            border: 1.5px solid var(--c-border);
+        }
+        .btn-outline:hover { border-color: var(--c-primary); color: var(--c-primary); }
+
+        /* ── Hero screenshot ── */
+        .hero-screenshot {
+            margin-top: 60px; position: relative;
+        }
+        .hero-screenshot img {
+            width: 100%; max-width: 900px; border-radius: 16px;
+            box-shadow: var(--shadow-lg); border: 1px solid var(--c-border);
+        }
+
+        /* ── Section ── */
+        .section { padding: 100px 0; }
+        .section--alt { background: var(--c-bg-alt); }
+        .section-header {
+            text-align: center; max-width: 640px;
+            margin: 0 auto 56px;
+        }
+        .section-header h2 {
+            font-size: clamp(28px, 3.5vw, 38px); font-weight: 700;
+            margin-bottom: 12px; letter-spacing: -0.01em;
+        }
+        .section-header p { font-size: 17px; color: var(--c-text-muted); }
+
+        /* ── Features ── */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+        .feature-card {
+            padding: 28px; border-radius: var(--radius);
+            background: var(--c-bg); border: 1px solid var(--c-border);
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+        }
+        .feature-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+        .feature-icon {
+            width: 44px; height: 44px; border-radius: 10px;
+            background: var(--c-accent); color: var(--c-primary);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px; font-size: 20px;
+        }
+        .feature-card h3 { font-size: 16px; font-weight: 650; margin-bottom: 8px; }
+        .feature-card p { font-size: 14px; color: var(--c-text-muted); line-height: 1.55; }
+
+        /* ── Showcase (screenshots) ── */
+        .showcase-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+        }
+        .showcase-item {
+            position: relative; border-radius: var(--radius); overflow: hidden;
+            border: 1px solid var(--c-border); background: var(--c-bg);
+            box-shadow: var(--shadow);
+        }
+        .showcase-item img {
+            display: block; width: 100%; height: auto;
+        }
+        .showcase-item--wide { grid-column: span 2; }
+        .showcase-caption {
+            padding: 14px 18px; font-size: 13px; font-weight: 600;
+            color: var(--c-text-muted); background: var(--c-bg);
+            border-top: 1px solid var(--c-border);
+        }
+
+        /* ── Feature highlight rows ── */
+        .highlight {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 48px; align-items: center; margin-bottom: 80px;
+        }
+        .highlight:last-child { margin-bottom: 0; }
+        .highlight--reverse { direction: rtl; }
+        .highlight--reverse > * { direction: ltr; }
+        .highlight-text h3 {
+            font-size: 26px; font-weight: 700; margin-bottom: 12px;
+        }
+        .highlight-text p {
+            font-size: 15px; color: var(--c-text-muted); margin-bottom: 16px;
+        }
+        .highlight-text ul {
+            list-style: none; padding: 0;
+        }
+        .highlight-text li {
+            padding: 4px 0; font-size: 14px; color: var(--c-text-muted);
+            display: flex; align-items: flex-start; gap: 8px;
+        }
+        .highlight-text li::before {
+            content: "\2713"; color: var(--c-primary); font-weight: 700;
+            flex-shrink: 0;
+        }
+        .highlight-img img {
+            width: 100%; border-radius: var(--radius);
+            box-shadow: var(--shadow); border: 1px solid var(--c-border);
+        }
+
+        /* ── Screenshot lightbox ── */
+        .lb-overlay {
+            position: fixed; inset: 0; z-index: 200;
+            background: rgba(0,0,0,0.88); backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            cursor: zoom-out;
+        }
+        .lb-overlay.lb-open { opacity: 1; visibility: visible; }
+        .lb-overlay img {
+            max-width: 92vw; max-height: 90vh; border-radius: 8px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+        }
+        .lb-close {
+            position: fixed; top: 16px; right: 16px; z-index: 201;
+            width: 40px; height: 40px; border: none; border-radius: 50%;
+            background: rgba(255,255,255,0.15); color: #fff;
+            font-size: 22px; cursor: pointer; display: flex;
+            align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .lb-close:hover { background: rgba(255,255,255,0.3); }
+        .showcase-item img, .highlight-img img { cursor: zoom-in; }
+
+        /* ── How it works ── */
+        .steps {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 24px; text-align: center; counter-reset: step;
+        }
+        .step {
+            padding: 32px 20px; border-radius: var(--radius);
+            background: var(--c-bg); border: 1px solid var(--c-border);
+            position: relative;
+        }
+        .step-num {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--c-primary); color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: 700; margin: 0 auto 14px;
+        }
+        .step h3 { font-size: 15px; font-weight: 650; margin-bottom: 6px; }
+        .step p { font-size: 13px; color: var(--c-text-muted); }
+
+        /* ── Feature list (compact) ── */
+        .feature-list {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 12px 24px;
+        }
+        .feature-list-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 0; font-size: 14px; color: var(--c-text);
+        }
+        .feature-list-item::before {
+            content: "\2713"; width: 24px; height: 24px; flex-shrink: 0;
+            background: var(--c-accent); color: var(--c-primary);
+            border-radius: 6px; display: flex; align-items: center;
+            justify-content: center; font-size: 13px; font-weight: 700;
+        }
+
+        /* ── Code block ── */
+        .code-block {
+            background: var(--c-bg-dark); color: #e4e6eb; padding: 20px 24px;
+            border-radius: 10px; font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+            font-size: 14px; overflow-x: auto; margin-top: 16px;
+        }
+        .code-block .c-key { color: #8ec5fc; }
+        .code-block .c-val { color: #a8d8a8; }
+
+        /* ── CTA ── */
+        .cta {
+            padding: 80px 0; text-align: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+        }
+        .cta h2 { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+        .cta p { color: rgba(255,255,255,0.7); font-size: 17px; margin-bottom: 32px; }
+        .cta .btn-primary { background: #fff; color: var(--c-primary); }
+        .cta .btn-primary:hover { background: #f0f6fa; }
+
+        /* ── Footer ── */
+        .footer {
+            padding: 32px 0; text-align: center;
+            background: var(--c-bg-dark); color: #666;
+            font-size: 13px;
+        }
+        .footer a { color: #999; text-decoration: none; }
+        .footer a:hover { color: #fff; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-list { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 700px) {
+            .features-grid { grid-template-columns: 1fr; }
+            .feature-list { grid-template-columns: 1fr; }
+            .showcase-grid { grid-template-columns: 1fr; }
+            .showcase-item--wide { grid-column: span 1; }
+            .highlight, .highlight--reverse { grid-template-columns: 1fr; gap: 24px; }
+            .steps { grid-template-columns: repeat(2, 1fr); }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .nav-links { gap: 16px; }
+            .nav-links a { font-size: 13px; }
+        }
+        /* ── Demo section ── */
+        .demo-section { padding: 100px 0; background: var(--c-bg-alt); }
+        .demo-layout {
+            display: grid; grid-template-columns: 280px 1fr; gap: 32px;
+            align-items: start;
+        }
+        .demo-controls {
+            position: sticky; top: 72px;
+            background: var(--c-bg); border: 1px solid var(--c-border);
+            border-radius: var(--radius); padding: 24px;
+            box-shadow: var(--shadow);
+        }
+        .demo-controls h3 {
+            font-size: 15px; font-weight: 700; margin-bottom: 20px;
+            padding-bottom: 12px; border-bottom: 1px solid var(--c-border);
+        }
+        .demo-control {
+            margin-bottom: 16px;
+        }
+        .demo-control:last-child { margin-bottom: 0; }
+        .demo-control label {
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 13px; font-weight: 600; color: var(--c-text);
+            margin-bottom: 6px;
+        }
+        .demo-control label span {
+            font-weight: 400; color: var(--c-text-muted);
+            background: var(--c-bg-alt); padding: 2px 8px;
+            border-radius: 4px; font-size: 12px; min-width: 32px;
+            text-align: center;
+        }
+        .demo-control input[type="range"] {
+            width: 100%; accent-color: var(--c-primary);
+            height: 6px; -webkit-appearance: none; appearance: none;
+            background: var(--c-border); border-radius: 3px; outline: none;
+        }
+        .demo-control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 18px; height: 18px;
+            background: var(--c-primary); border-radius: 50%; cursor: pointer;
+        }
+        .demo-control select {
+            width: 100%; padding: 8px 12px; border: 1px solid var(--c-border);
+            border-radius: 8px; font-size: 13px; background: var(--c-bg);
+            color: var(--c-text); cursor: pointer;
+        }
+        .demo-control-row {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .demo-toggle {
+            position: relative; width: 40px; height: 22px;
+            background: var(--c-border); border-radius: 11px;
+            cursor: pointer; transition: background 0.2s;
+            border: none; padding: 0;
+        }
+        .demo-toggle.active { background: var(--c-primary); }
+        .demo-toggle::after {
+            content: ''; position: absolute; top: 2px; left: 2px;
+            width: 18px; height: 18px; background: #fff;
+            border-radius: 50%; transition: transform 0.2s;
+        }
+        .demo-toggle.active::after { transform: translateX(18px); }
+        .demo-preview {
+            min-width: 0; /* prevent grid blowout */
+        }
+        /* Ensure posters fill their grid cell (especially for multi-column spans) */
+        .demo-preview .pcast-poster { width: 100%; }
+        .demo-preview .pcast-poster__trigger { width: 100%; }
+        /* Poster Links section */
+        .demo-links-section { background: var(--c-bg); }
+        .demo-links-layout {
+            display: grid; grid-template-columns: 1fr 300px; gap: 48px;
+            align-items: center;
+        }
+        .demo-links-text h3 {
+            font-size: 20px; font-weight: 700; margin-bottom: 16px;
+        }
+        .demo-links-text p {
+            font-size: 15px; line-height: 1.8; margin-bottom: 14px;
+            color: var(--c-text);
+        }
+        .demo-links-hint {
+            font-size: 13px !important; color: var(--c-text-muted) !important;
+            margin-top: 8px;
+        }
+        .demo-poster-link {
+            color: var(--c-primary); font-weight: 600;
+            text-decoration: underline; text-decoration-style: dotted;
+            text-underline-offset: 3px; cursor: pointer;
+            transition: color 0.2s;
+        }
+        .demo-poster-link:hover { color: var(--c-primary-dark); text-decoration-style: solid; }
+        .demo-links-gallery .pcast-poster { width: 100%; }
+        .demo-links-gallery .pcast-poster__trigger { width: 100%; }
+        @media (max-width: 768px) {
+            .demo-links-layout { grid-template-columns: 1fr; gap: 32px; }
+        }
+        /* Demo lightbox */
+        .demo-lightbox {
+            position: fixed; inset: 0; z-index: 300;
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(6px);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+        }
+        .demo-lightbox.open { opacity: 1; visibility: visible; }
+        .demo-lightbox__close {
+            position: fixed; top: 16px; right: 16px; z-index: 10;
+            width: 44px; height: 44px; border: none;
+            background: rgba(255,255,255,0.15); border-radius: 50%;
+            color: #fff; font-size: 28px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .demo-lightbox__close:hover { background: rgba(255,255,255,0.3); }
+        .demo-lightbox__nav {
+            position: fixed; top: 50%; z-index: 10;
+            width: 48px; height: 48px; border: none;
+            background: rgba(255,255,255,0.15); border-radius: 50%;
+            color: #fff; font-size: 30px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transform: translateY(-50%);
+        }
+        .demo-lightbox__nav:hover { background: rgba(255,255,255,0.3); }
+        .demo-lightbox__nav--prev { left: 16px; }
+        .demo-lightbox__nav--next { right: 16px; }
+        .demo-lightbox__img {
+            max-width: 90vw; max-height: 70vh; object-fit: contain;
+            border-radius: 4px; transition: opacity 0.25s;
+        }
+        .demo-lightbox__title {
+            color: #fff; font-size: 15px; font-weight: 600;
+            margin-top: 16px; text-align: center;
+        }
+        .demo-lightbox__link {
+            color: #8ec5fc; font-size: 13px; text-decoration: none;
+            margin-top: 4px;
+        }
+        .demo-lightbox__link:hover { text-decoration: underline; }
+        .demo-lightbox__thumbs {
+            display: flex; gap: 8px; margin-top: 16px;
+            justify-content: center; flex-wrap: nowrap;
+            max-width: 90vw; overflow-x: auto;
+            padding: 4px 0;
+        }
+        .demo-lightbox__thumb {
+            flex: 0 0 auto; width: 48px; height: 48px;
+            border: 2px solid transparent; border-radius: 6px;
+            cursor: pointer; overflow: hidden; opacity: 0.5;
+            transition: opacity 0.2s, border-color 0.2s, transform 0.2s;
+            padding: 0; background: none;
+        }
+        .demo-lightbox__thumb:hover { opacity: 0.8; transform: scale(1.1); }
+        .demo-lightbox__thumb.active {
+            opacity: 1; border-color: #fff; transform: scale(1.1);
+        }
+        .demo-lightbox__thumb img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            border-radius: 4px;
+        }
+        @media (max-width: 700px) {
+            .demo-layout { grid-template-columns: 1fr; }
+            .demo-controls { position: static; }
+        }
+    </style>
+    <link rel="stylesheet" href="gallery-style.css">
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+    <div class="container">
+        <a href="#" class="nav-brand">
+            <svg viewBox="0 0 24 24"><path d="M4 5h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2zm0 2v10h16V7H4zm2 2h4v4H6V9zm6 0h6v1h-6V9zm0 3h6v1h-6v-1z"/></svg>
+            PosterCast
+        </a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#demo">Demo</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#download">Download</a>
+            <a href="https://michalkoneczny.gumroad.com/l/poster-gallery" class="btn btn-primary" style="padding:8px 20px;font-size:13px;color: var(--c-bg);" target="_blank" rel="noopener">Get Plugin</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">WordPress Plugin &middot; v1.0</div>
+        <h1>Beautiful poster galleries<br>for <span>WordPress</span></h1>
+        <p>Display event posters, flyers, and promotional materials in a responsive grid with a stunning full-screen lightbox. Gutenberg block, shortcode, date scheduling, and drag & drop ordering included.</p>
+        <div class="hero-buttons">
+            <a href="https://michalkoneczny.gumroad.com/l/poster-gallery" style="color: var(--c-bg)" class="btn btn-primary" target="_blank" rel="noopener">Get Plugin &mdash; $19</a>
+            <a href="#features" class="btn btn-outline">Explore Features</a>
+        </div>
+        <div class="hero-screenshot">
+            <img src="screenshots/poster-gallery-lightbox.png" alt="PosterCast lightbox with thumbnail navigation">
+        </div>
+    </div>
+</section>
+
+<!-- Features grid -->
+<section class="section" id="features">
+    <div class="container">
+        <div class="section-header">
+            <h2>Everything you need</h2>
+            <p>A complete toolkit for managing and displaying poster galleries on your WordPress site.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#9638;</div>
+                <h3>Responsive CSS Grid</h3>
+                <p>Configurable columns, gap, poster sizing, and smart landscape/portrait spanning. Looks great on every screen.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9733;</div>
+                <h3>Full-Screen Lightbox</h3>
+                <p>Thumbnail strip, keyboard navigation, touch swipe, image preloading, custom link buttons, and full accessibility.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9776;</div>
+                <h3>Gutenberg Block</h3>
+                <p>Native block with 20+ settings. Edit posters, reorder with drag & drop, and preview the grid &mdash; all in the editor.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128197;</div>
+                <h3>Date Scheduling</h3>
+                <p>Set "show from" and "show until" dates. Posters appear and disappear automatically &mdash; perfect for events.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#8693;</div>
+                <h3>Drag & Drop Ordering</h3>
+                <p>Dedicated admin page for reordering posters with an intuitive drag & drop interface.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128279;</div>
+                <h3>Poster Link Format</h3>
+                <p>Link any text on your page to a poster. Select text, pick a poster from the toolbar &mdash; it opens in the lightbox.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128444;</div>
+                <h3>Multiple Galleries</h3>
+                <p>Organize posters into unlimited galleries. Display different galleries on different pages or multiple on one page.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#60;/&#62;</div>
+                <h3>Shortcode Support</h3>
+                <p>Use <code>[pcast_gallery]</code> anywhere. All block settings available as shortcode attributes for full flexibility.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#127760;</div>
+                <h3>8 Languages</h3>
+                <p>Fully translated into English, Czech, German, Slovak, Polish, French, Russian, and Chinese (Simplified).</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Screenshots -->
+<section class="section section--alt" id="screenshots">
+    <div class="container">
+        <div class="section-header">
+            <h2>See it in action</h2>
+            <p>Real screenshots from the plugin &mdash; frontend gallery, lightbox, block editor, and admin interface.</p>
+        </div>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="screenshots/poster-gallery-grid.png" alt="Poster grid with portrait and landscape posters">
+                <div class="showcase-caption">Responsive poster grid with automatic orientation detection</div>
+            </div>
+            <div class="showcase-item">
+                <img src="screenshots/poster-gallery-grid-show-all.png" alt="Gallery with Show All button">
+                <div class="showcase-caption">Limited display with customizable "Show all" button</div>
+            </div>
+            <div class="showcase-item showcase-item--wide">
+                <img src="screenshots/poster-gallery-lightbox.png" alt="Full-screen lightbox with thumbnails">
+                <div class="showcase-caption">Full-screen lightbox with thumbnail navigation strip</div>
+            </div>
+            <div class="showcase-item">
+                <img src="screenshots/poster-gallery-lightboxt-event-detail.png" alt="Lightbox with link button">
+                <div class="showcase-caption">Lightbox with custom link button for external URLs</div>
+            </div>
+            <div class="showcase-item">
+                <img src="screenshots/poster-gallery-gutenberg.png" alt="Gutenberg block editor with poster editing modal">
+                <div class="showcase-caption">Block editor with inline poster editing modal</div>
+            </div>
+            <div class="showcase-item">
+                <img src="screenshots/poster-gallery-modal-picker-2.png" alt="Poster link picker in toolbar">
+                <div class="showcase-caption">Inline format: link any text to a poster lightbox</div>
+            </div>
+            <div class="showcase-item">
+                <img src="screenshots/poster-gallery-wp-admin-reorder.png" alt="Admin drag and drop reorder page">
+                <div class="showcase-caption">Admin drag & drop reorder page</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Demo -->
+<section class="demo-section" id="demo">
+    <div class="container">
+        <div class="section-header">
+            <h2>Try it yourself</h2>
+            <p>Play with the gallery settings and see changes instantly. Click any poster to open the lightbox.</p>
+        </div>
+
+        <div class="demo-layout">
+            <!-- Controls panel -->
+            <div class="demo-controls">
+                <h3>Gallery Settings</h3>
+
+                <div class="demo-control">
+                    <label>Columns <span id="demo-columns-val">3</span></label>
+                    <input type="range" id="demo-columns" min="1" max="6" value="3">
+                </div>
+
+                <div class="demo-control">
+                    <label>Gap <span id="demo-gap-val">16px</span></label>
+                    <input type="range" id="demo-gap" min="0" max="40" value="16" step="2">
+                </div>
+
+                <div class="demo-control">
+                    <label>Max Height <span id="demo-max-height-val">350px</span></label>
+                    <input type="range" id="demo-max-height" min="150" max="600" value="350" step="10">
+                </div>
+
+                <div class="demo-control">
+                    <label>Poster Alignment</label>
+                    <select id="demo-align">
+                        <option value="center" selected>Center</option>
+                        <option value="start">Left</option>
+                        <option value="end">Right</option>
+                        <option value="stretch">Stretch</option>
+                    </select>
+                </div>
+
+                <div class="demo-control">
+                    <label>Landscape Span <span id="demo-lspan-val">2</span></label>
+                    <input type="range" id="demo-lspan" min="1" max="6" value="2">
+                </div>
+
+                <div class="demo-control">
+                    <div class="demo-control-row">
+                        <label style="margin:0">Shadow</label>
+                        <button class="demo-toggle active" id="demo-shadow" aria-label="Toggle shadow"></button>
+                    </div>
+                </div>
+
+                <div class="demo-control">
+                    <div class="demo-control-row">
+                        <label style="margin:0">Show All Button</label>
+                        <button class="demo-toggle active" id="demo-show-all" aria-label="Toggle show all"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live gallery preview -->
+            <div class="demo-preview">
+                <div class="pcast-gallery" id="demo-gallery" style="--pcast-columns:3; --pcast-gap:16px; --pcast-max-height:350px; --pcast-poster-align:center; --pcast-poster-bg:#fff;">
+                    <div class="pcast-gallery__grid" id="demo-grid">
+                        <!-- Posters injected by JS -->
+                    </div>
+                    <div class="pcast-gallery__footer" id="demo-footer">
+                        <button class="pcast-gallery__show-all" id="demo-show-all-btn">Show all (8)</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Poster Links Section -->
+<section class="section demo-links-section" id="poster-links">
+    <div class="container">
+        <div class="section-header">
+            <h2>Link posters from your content</h2>
+            <p>Reference any poster directly in your text. Readers click the link and the poster opens in a lightbox &mdash; no page reload.</p>
+        </div>
+        <div class="demo-links-layout">
+            <div class="demo-links-text">
+                <h3>Upcoming Events</h3>
+                <p>
+                    This season brings an exciting lineup to our gallery. The highlight is the
+                    <a href="#" class="demo-poster-link" data-poster-link="0">Film Noir</a>
+                    retrospective, featuring restored prints from the 1940s golden era.
+                </p>
+                <p>
+                    Don't miss the
+                    <a href="#" class="demo-poster-link" data-poster-link="1">Golden Hour</a>
+                    photography exhibition opening next Friday, or grab your passes for
+                    <a href="#" class="demo-poster-link" data-poster-link="2">Cinema Night</a>
+                    &mdash; our monthly outdoor screening under the stars.
+                </p>
+                <p class="demo-links-hint">
+                    &#9432; Click any highlighted link to open the poster in a lightbox.
+                </p>
+            </div>
+            <div class="demo-links-gallery">
+                <div class="pcast-gallery" id="demo-links-gallery" style="--pcast-columns:1; --pcast-gap:12px; --pcast-max-height:260px; --pcast-poster-align:center; --pcast-poster-bg:#fff;">
+                    <div class="pcast-gallery__grid" id="demo-links-grid">
+                        <!-- 3 posters injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Demo lightbox -->
+<div class="demo-lightbox" id="demo-lb">
+    <button class="demo-lightbox__close" aria-label="Close">&times;</button>
+    <button class="demo-lightbox__nav demo-lightbox__nav--prev" aria-label="Previous">&#8249;</button>
+    <button class="demo-lightbox__nav demo-lightbox__nav--next" aria-label="Next">&#8250;</button>
+    <img class="demo-lightbox__img" id="demo-lb-img" src="" alt="">
+    <div class="demo-lightbox__title" id="demo-lb-title"></div>
+    <a class="demo-lightbox__link" id="demo-lb-link" href="#" target="_blank" rel="noopener">Visit link &rarr;</a>
+    <div class="demo-lightbox__thumbs" id="demo-lb-thumbs"></div>
+</div>
+
+<!-- Highlight: Lightbox -->
+<section class="section">
+    <div class="container">
+        <div class="highlight">
+            <div class="highlight-text">
+                <h3>A lightbox that impresses</h3>
+                <p>Your posters deserve a beautiful full-screen viewer. The built-in lightbox has everything you need:</p>
+                <ul>
+                    <li>Thumbnail navigation strip for quick browsing</li>
+                    <li>Keyboard controls &mdash; arrow keys, Escape, Tab</li>
+                    <li>Touch swipe gestures on mobile</li>
+                    <li>Image preloading for instant transitions</li>
+                    <li>Custom link button per poster (e.g. "Buy tickets")</li>
+                    <li>Full accessibility: ARIA, focus trap, alt text</li>
+                </ul>
+            </div>
+            <div class="highlight-img">
+                <img src="screenshots/poster-gallery-lightboxt-event-detail.png" alt="Lightbox detail with link">
+            </div>
+        </div>
+        <div class="highlight highlight--reverse">
+            <div class="highlight-text">
+                <h3>Powerful block editor integration</h3>
+                <p>The Gutenberg block gives you full control without leaving the editor:</p>
+                <ul>
+                    <li>20+ configurable settings in the sidebar panel</li>
+                    <li>Add, edit, and delete posters inline</li>
+                    <li>Drag & drop reorder in the editor preview</li>
+                    <li>Set poster URL, orientation, alignment, and schedule</li>
+                    <li>Customize "Show all" button appearance</li>
+                    <li>Wide and full-width alignment support</li>
+                </ul>
+            </div>
+            <div class="highlight-img">
+                <img src="screenshots/poster-gallery-gutenberg.png" alt="Gutenberg block settings">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How it works -->
+<section class="section section--alt" id="how-it-works">
+    <div class="container">
+        <div class="section-header">
+            <h2>Up and running in minutes</h2>
+            <p>Four simple steps from installation to a live poster gallery on your site.</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>Install & Activate</h3>
+                <p>Upload the plugin ZIP and activate it from the Plugins page.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>Create Posters</h3>
+                <p>Add posters with images, URLs, orientation, and optional date scheduling.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>Organize Galleries</h3>
+                <p>Group posters into galleries. Reorder them with drag & drop.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <h3>Display</h3>
+                <p>Add the Gutenberg block or shortcode to any page. Done.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Shortcode -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Flexible shortcode</h2>
+            <p>Use the shortcode for classic editor, widgets, or anywhere shortcodes are supported.</p>
+        </div>
+        <div class="code-block">[<span class="c-key">pcast_gallery</span> <span class="c-key">gallery_id</span>=<span class="c-val">"1"</span> <span class="c-key">columns</span>=<span class="c-val">"3"</span> <span class="c-key">gap</span>=<span class="c-val">"20"</span> <span class="c-key">max_height</span>=<span class="c-val">"500"</span> <span class="c-key">poster_align</span>=<span class="c-val">"center"</span> <span class="c-key">lightbox_link_text</span>=<span class="c-val">"View event"</span>]</div>
+        <div style="margin-top:40px;">
+            <div class="section-header" style="margin-bottom:32px;">
+                <h2>Complete feature list</h2>
+            </div>
+            <div class="feature-list">
+                <div class="feature-list-item">Responsive CSS grid layout</div>
+                <div class="feature-list-item">Full-screen lightbox</div>
+                <div class="feature-list-item">Thumbnail navigation strip</div>
+                <div class="feature-list-item">Keyboard navigation</div>
+                <div class="feature-list-item">Touch swipe gestures</div>
+                <div class="feature-list-item">Image preloading</div>
+                <div class="feature-list-item">Gutenberg block (20+ settings)</div>
+                <div class="feature-list-item">Shortcode with all options</div>
+                <div class="feature-list-item">Multiple galleries</div>
+                <div class="feature-list-item">Drag & drop reordering</div>
+                <div class="feature-list-item">Date-based scheduling</div>
+                <div class="feature-list-item">Auto orientation detection</div>
+                <div class="feature-list-item">Custom poster URLs & links</div>
+                <div class="feature-list-item">Per-poster alignment control</div>
+                <div class="feature-list-item">Inline poster link format</div>
+                <div class="feature-list-item">"Show all" button styling</div>
+                <div class="feature-list-item">Shadow toggle</div>
+                <div class="feature-list-item">Custom poster background</div>
+                <div class="feature-list-item">Wide & full-width alignment</div>
+                <div class="feature-list-item">REST API endpoints</div>
+                <div class="feature-list-item">ARIA & focus trap accessibility</div>
+                <div class="feature-list-item">8 languages included</div>
+                <div class="feature-list-item">No jQuery on frontend</div>
+                <div class="feature-list-item">Assets loaded on demand</div>
+                <div class="feature-list-item">WordPress 6.0+ & PHP 8.0+</div>
+                <div class="feature-list-item">Automatic migration support</div>
+                <div class="feature-list-item">GPLv2 license</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Download -->
+<section class="section section--alt" id="download">
+    <div class="container">
+        <div class="section-header">
+            <h2>Get PosterCast</h2>
+            <p>One-time purchase. No subscription. Install on your WordPress site in under a minute.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;">
+            <a href="https://michalkoneczny.gumroad.com/l/poster-gallery" target="_blank" rel="noopener" class="btn btn-primary" style="padding:16px 36px;font-size:17px;">
+                Buy on Gumroad &mdash; $19
+            </a>
+            <!-- More stores coming soon -->
+        </div>
+        <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--c-text-muted);">
+            ZIP file &middot; WordPress 6.0+ &middot; PHP 8.0+ &middot; GPLv2 license
+        </p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>PosterCast &copy; 2025 <a href="https://poster-gallery.konecnymichal.cz">Michal Konecny</a> &middot; Released under GPLv2 or later</p>
+    </div>
+</footer>
+
+<!-- Screenshot lightbox -->
+<div class="lb-overlay" id="lb">
+    <button class="lb-close" aria-label="Close">&times;</button>
+    <img src="" alt="" id="lb-img">
+</div>
+
+<script>
+    /* Smooth scroll */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const id = a.getAttribute('href');
+            if (id === '#') return;
+            e.preventDefault();
+            const el = document.querySelector(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    /* Screenshot lightbox */
+    const lb = document.getElementById('lb');
+    const lbImg = document.getElementById('lb-img');
+
+    document.querySelectorAll('.showcase-item img, .highlight-img img').forEach(img => {
+        img.addEventListener('click', () => {
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lb.classList.add('lb-open');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function closeLb() {
+        lb.classList.remove('lb-open');
+        document.body.style.overflow = '';
+    }
+
+    lb.addEventListener('click', e => { if (e.target !== lbImg) closeLb(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+    /* ================================================================
+       Interactive Demo
+       ================================================================ */
+    (function () {
+        const posters = [
+            { id: 1, src: 'demo/poster-1.jpg', title: 'Film Noir', orientation: 'portrait', link: '#', linkText: 'Buy tickets' },
+            { id: 2, src: 'demo/poster-2.jpg', title: 'City Lights', orientation: 'landscape', link: '#', linkText: 'View exhibition' },
+            { id: 3, src: 'demo/poster-3.jpg', title: 'The Stage', orientation: 'portrait', link: '', linkText: '' },
+            { id: 4, src: 'demo/poster-4.jpg', title: 'Golden Hour', orientation: 'landscape', link: '#', linkText: 'Learn more' },
+            { id: 5, src: 'demo/poster-5.jpg', title: 'Cinema Night', orientation: 'portrait', link: '#', linkText: 'Get passes' },
+            { id: 6, src: 'demo/poster-6.jpg', title: 'Urban Art', orientation: 'landscape', link: '', linkText: '' },
+            { id: 7, src: 'demo/poster-7.jpg', title: 'Retro Vibes', orientation: 'portrait', link: '#', linkText: 'Shop prints' },
+            { id: 8, src: 'demo/poster-8.jpg', title: 'Neon Dreams', orientation: 'landscape', link: '#', linkText: 'Visit website' },
+        ];
+
+        const grid = document.getElementById('demo-grid');
+        const gallery = document.getElementById('demo-gallery');
+        const footer = document.getElementById('demo-footer');
+        const showAllBtn = document.getElementById('demo-show-all-btn');
+
+        /* ── Render poster grid ── */
+        function renderGrid() {
+            const cols = parseInt(gallery.style.getPropertyValue('--pcast-columns')) || 3;
+            const lspan = parseInt(document.getElementById('demo-lspan').value) || 2;
+            grid.innerHTML = '';
+            posters.forEach((p, i) => {
+                const isLandscape = p.orientation === 'landscape';
+                const span = isLandscape ? Math.min(lspan, cols) : 1;
+                const div = document.createElement('div');
+                div.className = 'pcast-poster' + (isLandscape ? ' pcast-poster--landscape' : ' pcast-poster--portrait');
+                if (span > 1) div.style.gridColumn = 'span ' + span;
+                div.innerHTML =
+                    '<button class="pcast-poster__trigger" data-index="' + i + '">' +
+                    '<img class="pcast-poster__image" src="' + p.src + '" alt="' + p.title + '" loading="lazy">' +
+                    '</button>';
+                grid.appendChild(div);
+            });
+            /* Bind poster clicks to lightbox */
+            grid.querySelectorAll('.pcast-poster__trigger').forEach(btn => {
+                btn.addEventListener('click', () => openLightbox(parseInt(btn.dataset.index)));
+            });
+        }
+
+        renderGrid();
+
+        /* ── Controls → CSS custom properties ── */
+        function bind(inputId, prop, suffix, valId) {
+            const el = document.getElementById(inputId);
+            const valEl = valId ? document.getElementById(valId) : null;
+            el.addEventListener('input', () => {
+                gallery.style.setProperty(prop, el.value + (suffix || ''));
+                if (valEl) valEl.textContent = el.value + (suffix || '');
+                if (inputId === 'demo-columns' || inputId === 'demo-lspan') renderGrid();
+            });
+        }
+
+        const colsInput = document.getElementById('demo-columns');
+        const lspanInput = document.getElementById('demo-lspan');
+        const lspanVal = document.getElementById('demo-lspan-val');
+
+        /* Sync landscape span max to columns value */
+        function syncLspanMax() {
+            const cols = parseInt(colsInput.value);
+            lspanInput.max = cols;
+            if (parseInt(lspanInput.value) > cols) {
+                lspanInput.value = cols;
+                lspanVal.textContent = cols;
+            }
+        }
+
+        bind('demo-columns', '--pcast-columns', '', 'demo-columns-val');
+        colsInput.addEventListener('input', syncLspanMax);
+        bind('demo-gap', '--pcast-gap', 'px', 'demo-gap-val');
+        bind('demo-max-height', '--pcast-max-height', 'px', 'demo-max-height-val');
+        bind('demo-lspan', null, '', 'demo-lspan-val'); /* handled in renderGrid */
+        syncLspanMax();
+
+        document.getElementById('demo-align').addEventListener('change', function () {
+            gallery.style.setProperty('--pcast-poster-align', this.value);
+        });
+
+        /* Toggle buttons */
+        document.getElementById('demo-shadow').addEventListener('click', function () {
+            this.classList.toggle('active');
+            gallery.classList.toggle('pcast-gallery--no-shadow', !this.classList.contains('active'));
+        });
+
+        document.getElementById('demo-show-all').addEventListener('click', function () {
+            this.classList.toggle('active');
+            footer.style.display = this.classList.contains('active') ? '' : 'none';
+        });
+
+        /* Show All button — just a visual demo */
+        showAllBtn.addEventListener('click', () => openLightbox(0));
+
+        /* ── Mini Lightbox ── */
+        const lbEl = document.getElementById('demo-lb');
+        const lbImg2 = document.getElementById('demo-lb-img');
+        const lbTitle = document.getElementById('demo-lb-title');
+        const lbLink = document.getElementById('demo-lb-link');
+        const lbThumbs = document.getElementById('demo-lb-thumbs');
+        let currentIndex = 0;
+
+        /* Build thumbs once */
+        posters.forEach((p, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'demo-lightbox__thumb';
+            btn.innerHTML = '<img src="' + p.src + '" alt="' + p.title + '">';
+            btn.addEventListener('click', () => showSlide(i));
+            lbThumbs.appendChild(btn);
+        });
+
+        function showSlide(i) {
+            currentIndex = ((i % posters.length) + posters.length) % posters.length;
+            const p = posters[currentIndex];
+            lbImg2.src = p.src;
+            lbImg2.alt = p.title;
+            lbTitle.textContent = p.title;
+            if (p.link) {
+                lbLink.style.display = '';
+                lbLink.href = p.link;
+                lbLink.textContent = (p.linkText || 'Visit link') + ' \u2192';
+            } else {
+                lbLink.style.display = 'none';
+            }
+            lbThumbs.querySelectorAll('.demo-lightbox__thumb').forEach((t, idx) => {
+                t.classList.toggle('active', idx === currentIndex);
+            });
+        }
+
+        function openLightbox(i) {
+            showSlide(i);
+            lbEl.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDemoLb() {
+            lbEl.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        lbEl.querySelector('.demo-lightbox__close').addEventListener('click', closeDemoLb);
+        lbEl.querySelector('.demo-lightbox__nav--prev').addEventListener('click', () => showSlide(currentIndex - 1));
+        lbEl.querySelector('.demo-lightbox__nav--next').addEventListener('click', () => showSlide(currentIndex + 1));
+
+        /* Click backdrop to close */
+        lbEl.addEventListener('click', e => {
+            if (e.target === lbEl) closeDemoLb();
+        });
+
+        /* Keyboard navigation */
+        document.addEventListener('keydown', e => {
+            if (!lbEl.classList.contains('open')) return;
+            if (e.key === 'Escape') closeDemoLb();
+            if (e.key === 'ArrowLeft') showSlide(currentIndex - 1);
+            if (e.key === 'ArrowRight') showSlide(currentIndex + 1);
+        });
+
+        /* Touch swipe */
+        let touchStartX = 0;
+        lbEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+        lbEl.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 50) {
+                showSlide(currentIndex + (dx < 0 ? 1 : -1));
+            }
+        }, { passive: true });
+
+        /* ── Poster Links section — mini gallery ── */
+        const linkPosters = [
+            { src: 'demo/poster-1.jpg', title: 'Film Noir' },
+            { src: 'demo/poster-4.jpg', title: 'Golden Hour' },
+            { src: 'demo/poster-5.jpg', title: 'Cinema Night' },
+        ];
+        const linksGrid = document.getElementById('demo-links-grid');
+        linkPosters.forEach((p, i) => {
+            const div = document.createElement('div');
+            div.className = 'pcast-poster';
+            div.innerHTML =
+                '<button class="pcast-poster__trigger" data-link-index="' + i + '">' +
+                '<img class="pcast-poster__image" src="' + p.src + '" alt="' + p.title + '" loading="lazy">' +
+                '</button>';
+            linksGrid.appendChild(div);
+        });
+
+        /* Mini lightbox for poster links section */
+        function openLinksLb(i) {
+            const p = linkPosters[i];
+            lbImg2.src = p.src;
+            lbImg2.alt = p.title;
+            lbTitle.textContent = p.title;
+            lbLink.style.display = 'none';
+            /* Show only these 3 thumbs */
+            lbThumbs.innerHTML = '';
+            linkPosters.forEach((lp, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'demo-lightbox__thumb' + (idx === i ? ' active' : '');
+                btn.innerHTML = '<img src="' + lp.src + '" alt="' + lp.title + '">';
+                btn.addEventListener('click', () => openLinksLb(idx));
+                lbThumbs.appendChild(btn);
+            });
+            currentIndex = i;
+            lbEl.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        /* Clicks on mini gallery posters */
+        linksGrid.querySelectorAll('.pcast-poster__trigger').forEach(btn => {
+            btn.addEventListener('click', () => openLinksLb(parseInt(btn.dataset.linkIndex)));
+        });
+
+        /* Clicks on text links */
+        document.querySelectorAll('.demo-poster-link').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                openLinksLb(parseInt(a.dataset.posterLink));
+            });
+        });
+    })();
+</script>
+</body>
+</html>

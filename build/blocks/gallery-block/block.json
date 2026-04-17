@@ -1,0 +1,113 @@
+{
+  "apiVersion": 3,
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "name": "pcast/gallery",
+  "version": "1.0.0",
+  "title": "PosterCast",
+  "category": "media",
+  "icon": "format-gallery",
+  "description": "Display a poster/flyer gallery with lightbox.",
+  "textdomain": "postercast",
+  "attributes": {
+    "galleryId": {
+      "type": "number",
+      "default": 0
+    },
+    "limit": {
+      "type": "number",
+      "default": 6
+    },
+    "showAllLink": {
+      "type": "boolean",
+      "default": true
+    },
+    "posterSize": {
+      "type": "string",
+      "default": "medium_large"
+    },
+    "columns": {
+      "type": "number",
+      "default": 2
+    },
+    "landscapeSpan": {
+      "type": "number",
+      "default": 2
+    },
+    "portraitSpan": {
+      "type": "number",
+      "default": 1
+    },
+    "posterAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "maxHeight": {
+      "type": "number",
+      "default": 400
+    },
+    "maxWidth": {
+      "type": "number",
+      "default": 0
+    },
+    "galleryAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "gap": {
+      "type": "number",
+      "default": 16
+    },
+    "posterBackground": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "showShadow": {
+      "type": "boolean",
+      "default": true
+    },
+    "showAllText": {
+      "type": "string",
+      "default": "Show all"
+    },
+    "showAllShowCount": {
+      "type": "boolean",
+      "default": true
+    },
+    "showAllBg": {
+      "type": "string",
+      "default": "transparent"
+    },
+    "showAllColor": {
+      "type": "string",
+      "default": "#333333"
+    },
+    "showAllBorderColor": {
+      "type": "string",
+      "default": "#c0c0c0"
+    },
+    "showAllBorderWidth": {
+      "type": "number",
+      "default": 1
+    },
+    "showAllBorderRadius": {
+      "type": "number",
+      "default": 24
+    },
+    "lightboxLinkText": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
+  },
+  "editorScript": "file:./index.js"
+}

@@ -1,0 +1,350 @@
+# Czech translation for Poster Gallery
+# Copyright (C) 2024 Michal Konecny
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Poster Gallery 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Michal Konecny\n"
+"Language-Team: Czech\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+
+#: includes/class-post-type-poster.php
+msgid "Posters"
+msgstr "Plakáty"
+
+#: includes/class-post-type-poster.php
+msgid "Poster"
+msgstr "Plakát"
+
+#: includes/class-post-type-poster.php
+msgid "Poster Gallery"
+msgstr "Galerie plakátů"
+
+#: includes/class-post-type-poster.php
+msgid "Add Poster"
+msgstr "Přidat plakát"
+
+#: includes/class-post-type-poster.php
+msgid "Add New Poster"
+msgstr "Přidat nový plakát"
+
+#: includes/class-post-type-poster.php
+msgid "Edit Poster"
+msgstr "Upravit plakát"
+
+#: includes/class-post-type-poster.php
+msgid "New Poster"
+msgstr "Nový plakát"
+
+#: includes/class-post-type-poster.php
+msgid "View Poster"
+msgstr "Zobrazit plakát"
+
+#: includes/class-post-type-poster.php
+msgid "Search Posters"
+msgstr "Hledat plakáty"
+
+#: includes/class-post-type-poster.php
+msgid "No posters found"
+msgstr "Žádné plakáty nenalezeny"
+
+#: includes/class-post-type-poster.php
+msgid "No posters found in Trash"
+msgstr "Žádné plakáty v koši"
+
+#: includes/class-post-type-poster.php
+msgid "All Posters"
+msgstr "Všechny plakáty"
+
+#: includes/class-post-type-poster.php
+msgid "Poster Image"
+msgstr "Obrázek plakátu"
+
+#: includes/class-post-type-poster.php
+msgid "Set poster image"
+msgstr "Nastavit obrázek plakátu"
+
+#: includes/class-post-type-poster.php
+msgid "Remove poster image"
+msgstr "Odebrat obrázek plakátu"
+
+#: includes/class-post-type-poster.php
+msgid "Use as poster image"
+msgstr "Použít jako obrázek plakátu"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Galleries"
+msgstr "Galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Gallery"
+msgstr "Galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "All Galleries"
+msgstr "Všechny galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Edit Gallery"
+msgstr "Upravit galerii"
+
+#: includes/class-taxonomy-gallery.php
+msgid "View Gallery"
+msgstr "Zobrazit galerii"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Update Gallery"
+msgstr "Aktualizovat galerii"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Add New Gallery"
+msgstr "Přidat novou galerii"
+
+#: includes/class-taxonomy-gallery.php
+msgid "New Gallery Name"
+msgstr "Název nové galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Search Galleries"
+msgstr "Hledat galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "No galleries found"
+msgstr "Žádné galerie nenalezeny"
+
+#: includes/class-meta-fields.php
+msgid "Poster Details"
+msgstr "Detaily plakátu"
+
+#: includes/class-meta-fields.php
+msgid "Description"
+msgstr "Popis"
+
+#: includes/class-meta-fields.php
+msgid "Admin-only note. Not displayed on the frontend."
+msgstr "Poznámka pouze pro administraci. Nezobrazuje se na webu."
+
+#: includes/class-meta-fields.php
+msgid "URL"
+msgstr "URL"
+
+#: includes/class-meta-fields.php
+msgid "Orientation Mode"
+msgstr "Režim orientace"
+
+#: includes/class-meta-fields.php
+msgid "Auto"
+msgstr "Automaticky"
+
+#: includes/class-meta-fields.php
+msgid "Portrait"
+msgstr "Na výšku"
+
+#: includes/class-meta-fields.php
+msgid "Landscape"
+msgstr "Na šířku"
+
+#: includes/class-meta-fields.php
+msgid "Detected: %s"
+msgstr "Detekováno: %s"
+
+#: includes/class-meta-fields.php
+msgid "Show From"
+msgstr "Zobrazit od"
+
+#: includes/class-meta-fields.php
+msgid "Show Until"
+msgstr "Zobrazit do"
+
+#: includes/class-admin-columns.php
+msgid "Thumbnail"
+msgstr "Náhled"
+
+#: includes/class-admin-columns.php
+msgid "Orientation"
+msgstr "Orientace"
+
+#: includes/class-admin-columns.php
+msgid "Date Range"
+msgstr "Období zobrazení"
+
+#: includes/class-admin-columns.php
+msgid "Order"
+msgstr "Pořadí"
+
+#: includes/class-admin-columns.php
+msgid "No image"
+msgstr "Bez obrázku"
+
+#: includes/class-admin-columns.php
+msgid "auto"
+msgstr "auto"
+
+#: includes/class-admin-columns.php
+msgid "From %s"
+msgstr "Od %s"
+
+#: includes/class-admin-columns.php
+msgid "Until %s"
+msgstr "Do %s"
+
+#: includes/class-admin-columns.php
+msgid "Always"
+msgstr "Vždy"
+
+#: includes/class-admin-columns.php
+msgid "Expired"
+msgstr "Vypršelo"
+
+#: includes/class-admin-columns.php
+msgid "Scheduled"
+msgstr "Naplánováno"
+
+#: includes/class-admin-order.php
+msgid "Reorder Posters"
+msgstr "Seřadit plakáty"
+
+#: includes/class-admin-order.php
+msgid "Reorder"
+msgstr "Seřadit"
+
+#: includes/class-admin-order.php
+msgid "Select Gallery:"
+msgstr "Vyberte galerii:"
+
+#: includes/class-admin-order.php
+msgid "&mdash; Select a gallery &mdash;"
+msgstr "&mdash; Vyberte galerii &mdash;"
+
+#: includes/class-admin-order.php
+msgid "Select a gallery to load posters."
+msgstr "Vyberte galerii pro načtení plakátů."
+
+#: includes/class-admin-order.php
+msgid "Permission denied."
+msgstr "Přístup odepřen."
+
+#: includes/class-admin-order.php
+msgid "Invalid gallery."
+msgstr "Neplatná galerie."
+
+#: includes/class-admin-order.php
+msgid "No posters found in this gallery."
+msgstr "V této galerii nejsou žádné plakáty."
+
+#: includes/class-admin-order.php
+msgid "Invalid data."
+msgstr "Neplatná data."
+
+#: includes/class-rest-api.php
+msgid "Gallery not found."
+msgstr "Galerie nenalezena."
+
+#: includes/class-rest-api.php
+msgid "Order updated successfully."
+msgstr "Pořadí úspěšně aktualizováno."
+
+#: templates/gallery-grid.php
+msgid "Show all (%d)"
+msgstr "Zobrazit vše (%d)"
+
+#: templates/lightbox.php
+msgid "Image lightbox"
+msgstr "Prohlížeč obrázků"
+
+#: templates/lightbox.php
+msgid "Close lightbox"
+msgstr "Zavřít prohlížeč"
+
+#: templates/lightbox.php
+msgid "Previous image"
+msgstr "Předchozí obrázek"
+
+#: templates/lightbox.php
+msgid "Next image"
+msgstr "Následující obrázek"
+
+#: templates/lightbox.php
+msgid "Visit link"
+msgstr "Navštívit odkaz"
+
+#: templates/poster-item.php
+msgid "Open %s in lightbox"
+msgstr "Otevřít %s v prohlížeči"
+
+#: blocks/gallery-block/edit.js
+msgid "Max Gallery Width"
+msgstr "Maximální šířka galerie"
+
+#: blocks/gallery-block/edit.js
+msgid "Fit content"
+msgstr "Přizpůsobit obsahu"
+
+#: blocks/gallery-block/edit.js
+msgid "Small (600px)"
+msgstr "Malá (600px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Medium (800px)"
+msgstr "Střední (800px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Large (1000px)"
+msgstr "Velká (1000px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Extra Large (1200px)"
+msgstr "Extra velká (1200px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Full width (100%)"
+msgstr "Plná šířka (100%)"
+
+#: includes/class-meta-fields.php
+#: blocks/gallery-block/edit.js
+msgid "Horizontal Alignment"
+msgstr "Horizontální zarovnání"
+
+#: includes/class-meta-fields.php
+#: blocks/gallery-block/edit.js
+msgid "Vertical Alignment"
+msgstr "Vertikální zarovnání"
+
+#: includes/class-meta-fields.php
+msgid "Stretch"
+msgstr "Roztáhnout"
+
+#: includes/class-meta-fields.php
+msgid "Center"
+msgstr "Na střed"
+
+#: includes/class-meta-fields.php
+msgid "Left"
+msgstr "Vlevo"
+
+#: includes/class-meta-fields.php
+msgid "Right"
+msgstr "Vpravo"
+
+#: includes/class-meta-fields.php
+msgid "Top"
+msgstr "Nahoru"
+
+#: includes/class-meta-fields.php
+msgid "Bottom"
+msgstr "Dolů"
+
+#: blocks/gallery-block/edit.js
+msgid "Gallery Alignment"
+msgstr "Zarovnání galerie"
+
+#: blocks/gallery-block/edit.js
+msgid "Stretch (full width)"
+msgstr "Roztáhnout (plná šířka)"

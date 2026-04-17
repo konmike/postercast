@@ -1,0 +1,350 @@
+# French translation for Poster Gallery
+# Copyright (C) 2024 Michal Konecny
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Poster Gallery 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: includes/class-post-type-poster.php
+msgid "Posters"
+msgstr "Affiches"
+
+#: includes/class-post-type-poster.php
+msgid "Poster"
+msgstr "Affiche"
+
+#: includes/class-post-type-poster.php
+msgid "Poster Gallery"
+msgstr "Galerie d'affiches"
+
+#: includes/class-post-type-poster.php
+msgid "Add Poster"
+msgstr "Ajouter une affiche"
+
+#: includes/class-post-type-poster.php
+msgid "Add New Poster"
+msgstr "Ajouter une nouvelle affiche"
+
+#: includes/class-post-type-poster.php
+msgid "Edit Poster"
+msgstr "Modifier l'affiche"
+
+#: includes/class-post-type-poster.php
+msgid "New Poster"
+msgstr "Nouvelle affiche"
+
+#: includes/class-post-type-poster.php
+msgid "View Poster"
+msgstr "Voir l'affiche"
+
+#: includes/class-post-type-poster.php
+msgid "Search Posters"
+msgstr "Rechercher des affiches"
+
+#: includes/class-post-type-poster.php
+msgid "No posters found"
+msgstr "Aucune affiche trouvée"
+
+#: includes/class-post-type-poster.php
+msgid "No posters found in Trash"
+msgstr "Aucune affiche dans la corbeille"
+
+#: includes/class-post-type-poster.php
+msgid "All Posters"
+msgstr "Toutes les affiches"
+
+#: includes/class-post-type-poster.php
+msgid "Poster Image"
+msgstr "Image de l'affiche"
+
+#: includes/class-post-type-poster.php
+msgid "Set poster image"
+msgstr "Définir l'image de l'affiche"
+
+#: includes/class-post-type-poster.php
+msgid "Remove poster image"
+msgstr "Supprimer l'image de l'affiche"
+
+#: includes/class-post-type-poster.php
+msgid "Use as poster image"
+msgstr "Utiliser comme image de l'affiche"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Galleries"
+msgstr "Galeries"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Gallery"
+msgstr "Galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "All Galleries"
+msgstr "Toutes les galeries"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Edit Gallery"
+msgstr "Modifier la galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "View Gallery"
+msgstr "Voir la galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Update Gallery"
+msgstr "Mettre à jour la galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Add New Gallery"
+msgstr "Ajouter une nouvelle galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "New Gallery Name"
+msgstr "Nom de la nouvelle galerie"
+
+#: includes/class-taxonomy-gallery.php
+msgid "Search Galleries"
+msgstr "Rechercher des galeries"
+
+#: includes/class-taxonomy-gallery.php
+msgid "No galleries found"
+msgstr "Aucune galerie trouvée"
+
+#: includes/class-meta-fields.php
+msgid "Poster Details"
+msgstr "Détails de l'affiche"
+
+#: includes/class-meta-fields.php
+msgid "Description"
+msgstr "Description"
+
+#: includes/class-meta-fields.php
+msgid "Admin-only note. Not displayed on the frontend."
+msgstr "Note uniquement pour l'administration. Non affichée sur le site."
+
+#: includes/class-meta-fields.php
+msgid "URL"
+msgstr "URL"
+
+#: includes/class-meta-fields.php
+msgid "Orientation Mode"
+msgstr "Mode d'orientation"
+
+#: includes/class-meta-fields.php
+msgid "Auto"
+msgstr "Automatique"
+
+#: includes/class-meta-fields.php
+msgid "Portrait"
+msgstr "Portrait"
+
+#: includes/class-meta-fields.php
+msgid "Landscape"
+msgstr "Paysage"
+
+#: includes/class-meta-fields.php
+msgid "Detected: %s"
+msgstr "Détecté : %s"
+
+#: includes/class-meta-fields.php
+msgid "Show From"
+msgstr "Afficher à partir de"
+
+#: includes/class-meta-fields.php
+msgid "Show Until"
+msgstr "Afficher jusqu'à"
+
+#: includes/class-admin-columns.php
+msgid "Thumbnail"
+msgstr "Miniature"
+
+#: includes/class-admin-columns.php
+msgid "Orientation"
+msgstr "Orientation"
+
+#: includes/class-admin-columns.php
+msgid "Date Range"
+msgstr "Période"
+
+#: includes/class-admin-columns.php
+msgid "Order"
+msgstr "Ordre"
+
+#: includes/class-admin-columns.php
+msgid "No image"
+msgstr "Pas d'image"
+
+#: includes/class-admin-columns.php
+msgid "auto"
+msgstr "auto"
+
+#: includes/class-admin-columns.php
+msgid "From %s"
+msgstr "Depuis %s"
+
+#: includes/class-admin-columns.php
+msgid "Until %s"
+msgstr "Jusqu'à %s"
+
+#: includes/class-admin-columns.php
+msgid "Always"
+msgstr "Toujours"
+
+#: includes/class-admin-columns.php
+msgid "Expired"
+msgstr "Expiré"
+
+#: includes/class-admin-columns.php
+msgid "Scheduled"
+msgstr "Planifié"
+
+#: includes/class-admin-order.php
+msgid "Reorder Posters"
+msgstr "Réorganiser les affiches"
+
+#: includes/class-admin-order.php
+msgid "Reorder"
+msgstr "Réorganiser"
+
+#: includes/class-admin-order.php
+msgid "Select Gallery:"
+msgstr "Sélectionner une galerie :"
+
+#: includes/class-admin-order.php
+msgid "&mdash; Select a gallery &mdash;"
+msgstr "&mdash; Sélectionner une galerie &mdash;"
+
+#: includes/class-admin-order.php
+msgid "Select a gallery to load posters."
+msgstr "Sélectionnez une galerie pour charger les affiches."
+
+#: includes/class-admin-order.php
+msgid "Permission denied."
+msgstr "Accès refusé."
+
+#: includes/class-admin-order.php
+msgid "Invalid gallery."
+msgstr "Galerie invalide."
+
+#: includes/class-admin-order.php
+msgid "No posters found in this gallery."
+msgstr "Aucune affiche dans cette galerie."
+
+#: includes/class-admin-order.php
+msgid "Invalid data."
+msgstr "Données invalides."
+
+#: includes/class-rest-api.php
+msgid "Gallery not found."
+msgstr "Galerie introuvable."
+
+#: includes/class-rest-api.php
+msgid "Order updated successfully."
+msgstr "Ordre mis à jour avec succès."
+
+#: templates/gallery-grid.php
+msgid "Show all (%d)"
+msgstr "Tout afficher (%d)"
+
+#: templates/lightbox.php
+msgid "Image lightbox"
+msgstr "Visionneuse d'images"
+
+#: templates/lightbox.php
+msgid "Close lightbox"
+msgstr "Fermer la visionneuse"
+
+#: templates/lightbox.php
+msgid "Previous image"
+msgstr "Image précédente"
+
+#: templates/lightbox.php
+msgid "Next image"
+msgstr "Image suivante"
+
+#: templates/lightbox.php
+msgid "Visit link"
+msgstr "Visiter le lien"
+
+#: templates/poster-item.php
+msgid "Open %s in lightbox"
+msgstr "Ouvrir %s dans la visionneuse"
+
+#: blocks/gallery-block/edit.js
+msgid "Max Gallery Width"
+msgstr "Largeur maximale de la galerie"
+
+#: blocks/gallery-block/edit.js
+msgid "Fit content"
+msgstr "Ajuster au contenu"
+
+#: blocks/gallery-block/edit.js
+msgid "Small (600px)"
+msgstr "Petite (600px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Medium (800px)"
+msgstr "Moyenne (800px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Large (1000px)"
+msgstr "Grande (1000px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Extra Large (1200px)"
+msgstr "Extra grande (1200px)"
+
+#: blocks/gallery-block/edit.js
+msgid "Full width (100%)"
+msgstr "Pleine largeur (100%)"
+
+#: includes/class-meta-fields.php
+#: blocks/gallery-block/edit.js
+msgid "Horizontal Alignment"
+msgstr "Alignement horizontal"
+
+#: includes/class-meta-fields.php
+#: blocks/gallery-block/edit.js
+msgid "Vertical Alignment"
+msgstr "Alignement vertical"
+
+#: includes/class-meta-fields.php
+msgid "Stretch"
+msgstr "Étirer"
+
+#: includes/class-meta-fields.php
+msgid "Center"
+msgstr "Centre"
+
+#: includes/class-meta-fields.php
+msgid "Left"
+msgstr "Gauche"
+
+#: includes/class-meta-fields.php
+msgid "Right"
+msgstr "Droite"
+
+#: includes/class-meta-fields.php
+msgid "Top"
+msgstr "Haut"
+
+#: includes/class-meta-fields.php
+msgid "Bottom"
+msgstr "Bas"
+
+#: blocks/gallery-block/edit.js
+msgid "Gallery Alignment"
+msgstr "Alignement de la galerie"
+
+#: blocks/gallery-block/edit.js
+msgid "Stretch (full width)"
+msgstr "Étirer (pleine largeur)"
