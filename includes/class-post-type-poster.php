@@ -18,7 +18,7 @@ class Post_Type_Poster {
             'show_ui'             => true,
             'show_in_menu'        => true,
             'show_in_rest'        => true,
-            'rest_base'           => 'pcast-posters',
+            'rest_base'           => 'posters',
             'menu_position'       => 20,
             'menu_icon'           => 'dashicons-format-gallery',
             'supports'            => [ 'title', 'thumbnail', 'page-attributes', 'custom-fields' ],

@@ -58,13 +58,13 @@ export default function Edit( { attributes, setAttributes } ) {
         }
         const { getEntityRecords, isResolving } = select( 'core' );
         return {
-            galleries: getEntityRecords( 'taxonomy', 'poster_gallery', {
+            galleries: getEntityRecords( 'taxonomy', 'pcast_gallery', {
                 per_page: -1,
                 hide_empty: false,
             } ),
             isLoading: isResolving( 'getEntityRecords', [
                 'taxonomy',
-                'poster_gallery',
+                'pcast_gallery',
                 { per_page: -1, hide_empty: false },
             ] ),
         };
@@ -105,12 +105,12 @@ export default function Edit( { attributes, setAttributes } ) {
         setIsCreatingGallery( true );
         try {
             const term = await apiFetch( {
-                path: '/wp/v2/poster_gallery',
+                path: '/wp/v2/pcast_gallery',
                 method: 'POST',
                 data: { name: newGalleryName.trim() },
             } );
             invalidateResolution( 'core', 'getEntityRecords', [
-                'taxonomy', 'poster_gallery', { per_page: -1, hide_empty: false },
+                'taxonomy', 'pcast_gallery', { per_page: -1, hide_empty: false },
             ] );
             setAttributes( { galleryId: term.id } );
             setNewGalleryName( '' );
@@ -133,7 +133,7 @@ export default function Edit( { attributes, setAttributes } ) {
                         title: image.title || image.filename || __( 'Poster', 'postercast' ),
                         status: 'publish',
                         featured_media: image.id,
-                        poster_gallery: [ effectiveGalleryId ],
+                        pcast_gallery: [ effectiveGalleryId ],
                         meta: {
                             _pcast_orientation_mode: 'auto',
                             _pcast_orientation: image.width > image.height ? 'landscape' : 'portrait',
@@ -165,11 +165,12 @@ export default function Edit( { attributes, setAttributes } ) {
     const openEditModal = useCallback( async ( poster ) => {
         try {
             const full = await apiFetch( { path: `/wp/v2/posters/${ poster.id }` } );
-            setEditForm( {
+            const baseForm = {
                 title: full.title?.rendered || full.title?.raw || poster.title,
                 url: full.meta?._pcast_url || '',
                 orientation_mode: full.meta?._pcast_orientation_mode || 'auto',
-            } );
+            };
+            setEditForm( applyFilters( 'pcast.editPosterForm', baseForm, full ) );
             setEditingPoster( poster );
         } catch ( error ) {
             console.error( 'Failed to load poster details:', error );
@@ -185,10 +186,10 @@ export default function Edit( { attributes, setAttributes } ) {
                 method: 'POST',
                 data: {
                     title: editForm.title,
-                    meta: {
+                    meta: applyFilters( 'pcast.editPosterMeta', {
                         _pcast_url: editForm.url,
                         _pcast_orientation_mode: editForm.orientation_mode,
-                    },
+                    }, editForm ),
                 },
             } );
             setEditingPoster( null );
@@ -396,6 +397,8 @@ export default function Edit( { attributes, setAttributes } ) {
                         __next40pxDefaultSize
                         __nextHasNoMarginBottom
                     />
+
+                    { applyFilters( 'pcast.editPosterModalFields', null, editForm, setEditForm ) }
 
                     <div style={ { display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '8px' } }>
                         <Button variant="tertiary" onClick={ () => setEditingPoster( null ) }>

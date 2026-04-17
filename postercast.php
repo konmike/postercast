@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: PosterCast
- * Plugin URI:  https://poster-gallery.konecnymichal.cz
+ * Plugin URI:  https://postercast.konecnymichal.cz
  * Description: Beautiful poster and flyer galleries with responsive grid, full-screen lightbox, and Gutenberg block.
  * Version:     1.0.0
  * Author:      Michal Konecny
