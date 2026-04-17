@@ -54,7 +54,7 @@ Fully translatable with 8 included languages: English, Czech, German, Slovak, Po
 
 = PosterCast PRO =
 
-Want more? [PosterCast PRO](https://michalkoneczny.gumroad.com/l/poster-gallery) is a premium add-on that unlocks:
+Want more? [PosterCast PRO](https://michalkoneczny.gumroad.com/l/postercast) is a premium add-on that unlocks:
 
 * **Multiple galleries** — organize posters into unlimited galleries
 * **Custom columns** (1-8) with landscape/portrait column spanning
@@ -130,7 +130,7 @@ After activating the plugin, a default gallery is created automatically. Go to P
 
 = Can I use multiple galleries? =
 
-Multiple galleries are available with the [PosterCast PRO](https://michalkoneczny.gumroad.com/l/poster-gallery) add-on.
+Multiple galleries are available with the [PosterCast PRO](https://michalkoneczny.gumroad.com/l/postercast) add-on.
 
 = Does the lightbox work on mobile? =
 
@@ -142,7 +142,7 @@ The default text is "Visit link". Custom text per gallery is available with PRO.
 
 = Is there a PRO version? =
 
-Yes! [PosterCast PRO](https://michalkoneczny.gumroad.com/l/poster-gallery) adds multiple galleries, custom columns, drag & drop reordering, date scheduling, and many more customization options.
+Yes! [PosterCast PRO](https://michalkoneczny.gumroad.com/l/postercast) adds multiple galleries, custom columns, drag & drop reordering, date scheduling, and many more customization options.
 
 == Changelog ==
 

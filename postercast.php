@@ -113,7 +113,7 @@ function pcast_plugin_action_links( array $links ): array {
     if ( ! defined( 'PCAST_PRO' ) ) {
         $links['go_pro'] = sprintf(
             '<a href="%s" target="_blank" rel="noopener" style="color:#d63638;font-weight:600;">%s</a>',
-            'https://michalkoneczny.gumroad.com/l/poster-gallery',
+            'https://michalkoneczny.gumroad.com/l/postercast',
             __( 'Go PRO', 'postercast' )
         );
     }
