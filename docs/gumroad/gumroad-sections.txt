@@ -1,0 +1,73 @@
+====================================
+GUMROAD — PRODUCT PAGE SECTIONS
+====================================
+
+
+--- PRODUCT INFO ---
+
+Name: PosterCast — WordPress Plugin
+Price: $19
+URL slug: postercast
+
+
+--- CALL TO ACTION ---
+
+Button text: Buy Plugin
+Or: Get PosterCast
+
+
+--- SUMMARY ---
+
+A WordPress plugin for creating poster & flyer galleries with responsive CSS grid, full-screen lightbox, Gutenberg block, shortcode, date scheduling, and drag & drop ordering. 8 languages included.
+
+
+--- ADDITIONAL DETAILS ---
+
+File type: ZIP (WordPress plugin)
+File size: ~300 KB
+Version: 1.0.0
+Last updated: March 2026
+License: GPLv2 or later (unlimited use)
+
+Requirements:
+- WordPress 6.0+
+- PHP 8.0+
+
+What's included:
+- postercast.zip (ready to install)
+- Gutenberg block with 20+ settings
+- Shortcode with all options
+- Full-screen lightbox
+- 8 translations (EN, CS, DE, SK, PL, FR, RU, ZH)
+
+Support:
+- GitHub Issues for bug reports and feature requests
+- Documentation included
+
+
+--- INTEGRATIONS ---
+
+(Gumroad integrations to enable)
+
+- Discord / Email: for delivering download link
+- Google Analytics: track conversions
+- Leave the rest off unless you use them
+
+
+--- TAGS ---
+
+wordpress, wordpress-plugin, gallery, poster, flyer, lightbox, gutenberg, grid, shortcode, cms
+
+
+--- COVER IMAGE ---
+
+Use: screenshots/postercast-lightbox.png (most impressive visual)
+
+Product images (upload all):
+1. postercast-grid.png
+2. postercast-lightbox.png
+3. postercast-lightboxt-event-detail.png
+4. postercast-gutenberg.png
+5. postercast-grid-show-all.png
+6. postercast-wp-admin-reorder.png
+7. postercast-modal-picker-2.png
